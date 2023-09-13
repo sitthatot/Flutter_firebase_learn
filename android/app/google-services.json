@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "597357007432",
+    "firebase_url": "https://realtime-e80f0-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "realtime-e80f0",
+    "storage_bucket": "realtime-e80f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597357007432:android:6f1794f06acedf77bfbe7d",
+        "android_client_info": {
+          "package_name": "com.example.test_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhNPAIc7WBfipUsJ6qx__VQ_Tgu1OXXiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
