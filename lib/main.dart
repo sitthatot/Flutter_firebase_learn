@@ -34,6 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final nameController = TextEditingController();
+  final ageController = TextEditingController();
   late DatabaseReference dbRef;
 
   @override
@@ -52,9 +53,17 @@ class _MyHomePageState extends State<MyHomePage> {
             controller: nameController,
             decoration: InputDecoration(label: Text("Name")),
           ),
+          TextField(
+            controller: ageController,
+            decoration: InputDecoration(label: Text("Name")),
+          ),
           ElevatedButton(
               onPressed: () {
-                dbRef.push().set(nameController.text);
+                Map<String, String> user = {
+                  'name': nameController.text,
+                  'age': ageController.text
+                };
+                dbRef.push().set(user);
               },
               child: Text("Insert"))
         ],
