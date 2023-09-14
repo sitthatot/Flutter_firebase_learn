@@ -17,7 +17,7 @@ class _InsertPageState extends State<InsertPage> {
   @override
   void initState() {
     super.initState();
-    dbRef = FirebaseDatabase.instance.ref().child('user');
+    dbRef = FirebaseDatabase.instance.ref().child('users');
   }
 
   @override

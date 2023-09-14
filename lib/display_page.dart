@@ -11,7 +11,7 @@ class DisplayPage extends StatefulWidget {
 
 class _DisplayPageState extends State<DisplayPage> {
   Query refQ =
-      FirebaseDatabase.instance.ref().child('user'); //ตำแหน่งที่เก็บข้อมูล
+      FirebaseDatabase.instance.ref().child('users'); //ตำแหน่งที่เก็บข้อมูล
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,10 +19,29 @@ class _DisplayPageState extends State<DisplayPage> {
           child: FirebaseAnimatedList(
         query: refQ,
         itemBuilder: (context, snapshot, animation, index) {
-          String userString = snapshot.value as String;
-          return Text(userString);
+          Map userMap = snapshot.value as Map;
+          return ShowDisplay(userMap: userMap);
         },
       )),
+    );
+  }
+}
+
+class ShowDisplay extends StatelessWidget {
+  const ShowDisplay({
+    super.key,
+    required this.userMap,
+  });
+
+  final Map userMap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(userMap['name']),
+        Text(userMap['age']),
+      ],
     );
   }
 }
