@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:test_firebase/update_page.dart';
 
 class DisplayPage extends StatefulWidget {
   const DisplayPage({super.key});
@@ -20,6 +21,7 @@ class _DisplayPageState extends State<DisplayPage> {
         query: refQ,
         itemBuilder: (context, snapshot, animation, index) {
           Map userMap = snapshot.value as Map;
+          userMap['key'] = snapshot.key;
           return ShowDisplay(userMap: userMap);
         },
       )),
@@ -37,11 +39,34 @@ class ShowDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(userMap['name']),
-        Text(userMap['age']),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        padding: EdgeInsets.all(20),
+        color: Colors.amber,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(userMap['name']),
+                    Text(userMap['age']),
+                  ],
+                ),
+              ],
+            ),
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: ((context) => UpdatePage(data: userMap))));
+                },
+                icon: Icon(Icons.edit))
+          ],
+        ),
+      ),
     );
   }
 }
