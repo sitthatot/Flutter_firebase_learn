@@ -10,8 +10,8 @@ class InsertPage extends StatefulWidget {
 }
 
 class _InsertPageState extends State<InsertPage> {
-  final nameController = TextEditingController();
-  final ageController = TextEditingController();
+  final latController = TextEditingController();
+  final longController = TextEditingController();
   late DatabaseReference dbRef;
 
   @override
@@ -31,18 +31,18 @@ class _InsertPageState extends State<InsertPage> {
           child: Column(
         children: [
           TextField(
-            controller: nameController,
-            decoration: InputDecoration(label: Text("Name")),
+            controller: latController,
+            decoration: InputDecoration(label: Text("Lat")),
           ),
           TextField(
-            controller: ageController,
-            decoration: InputDecoration(label: Text("Age")),
+            controller: longController,
+            decoration: InputDecoration(label: Text("Long")),
           ),
           ElevatedButton(
               onPressed: () {
                 Map<String, String> user = {
-                  'name': nameController.text,
-                  'age': ageController.text
+                  'lat': latController.text,
+                  'long': longController.text
                 };
                 dbRef.push().set(user);
               },

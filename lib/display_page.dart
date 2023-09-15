@@ -52,8 +52,8 @@ class ShowDisplay extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(userMap['name']),
-                    Text(userMap['age']),
+                    Text(userMap['lat']),
+                    Text(userMap['long']),
                   ],
                 ),
               ],
