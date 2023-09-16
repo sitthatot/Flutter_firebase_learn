@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:test_firebase/display_page.dart';
+import 'package:geolocator/geolocator.dart';
 
 class InsertPage extends StatefulWidget {
   const InsertPage({super.key});

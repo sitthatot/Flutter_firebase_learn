@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:ffi';
+import 'package:geolocator/geolocator.dart';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,8 @@ class _UpdatePageState extends State<UpdatePage> {
   final latController = TextEditingController();
   final longController = TextEditingController();
   late DatabaseReference dbRef;
-
+  double latVal = 0.0;
+  double longVal = 0.0;
   Timer? timer;
   int count = 0;
   @override
@@ -28,24 +30,26 @@ class _UpdatePageState extends State<UpdatePage> {
     timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
       getdata();
       getRealData();
+      getLocation();
     });
   }
 
-  // Future<void> getdata() async {
-  //   latController.text = "66"; //ดึงข้อมูลมาโชว์
-  //   longController.text = widget.data['long'];
+  void getLocation() async {
+    await Geolocator.checkPermission();
+    await Geolocator.requestPermission();
 
-  //   Map<String, String> user = {
-  //     'lat': latController.text,
-  //     'long': longController.text
-  //   };
-  //   dbRef.child(widget.data['key']).child(widget.data['key']).update(user);
-  //   ;
-  // }
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+
+    latVal = position.latitude;
+    longVal = position.longitude;
+    print(position.latitude);
+  }
 
   void getdata() {
-    latController.text = "1225666653"; //ดึงข้อมูลมาโชว์
-    longController.text = widget.data['long'];
+    latController.text = latVal.toString(); //ดึงข้อมูลมาโชว์
+    longController.text = longVal.toString();
+    //longController.text = widget.data['long'];
   }
 
   void getRealData() {
@@ -74,6 +78,8 @@ class _UpdatePageState extends State<UpdatePage> {
             controller: longController,
             decoration: InputDecoration(label: Text("Long")),
           ),
+          Text(latVal.toString()),
+          Text(longVal.toString()),
           ElevatedButton(
               onPressed: () {
                 getRealData();
