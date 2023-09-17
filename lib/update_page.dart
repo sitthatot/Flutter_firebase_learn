@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'dart:ffi';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:test_firebase/display_page.dart';
+import 'display_page.dart';
 
 class UpdatePage extends StatefulWidget {
   const UpdatePage({super.key, required Map this.data});
@@ -40,7 +40,6 @@ class _UpdatePageState extends State<UpdatePage> {
           locationMessage = 'Latitude: $lat, Longitude: $long';
         });
         _liveLocation();
-        print(lat);
       });
     });
   }
@@ -77,7 +76,6 @@ class _UpdatePageState extends State<UpdatePage> {
 
     latVal = position.latitude;
     longVal = position.longitude;
-    print(position.latitude);
   }
 
   void _liveLocation() {
@@ -119,6 +117,9 @@ class _UpdatePageState extends State<UpdatePage> {
       body: SafeArea(
           child: Column(
         children: [
+          Text(myCount.toString()),
+          Text(myLatStr),
+          Text((double.tryParse(myLongStr)).toString()),
           TextField(
             controller: latController,
             decoration: InputDecoration(label: Text("Lat")),
